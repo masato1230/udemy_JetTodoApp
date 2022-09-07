@@ -6,19 +6,15 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.jettodoapp.MainViewModel
 
 @Composable
-fun EditDialog(
-    isShowDialog: MutableState<Boolean>,
-    viewModel: MainViewModel = hiltViewModel(),
-) {
+fun EditDialog(viewModel: MainViewModel = hiltViewModel()) {
     AlertDialog(
-        onDismissRequest = { isShowDialog.value = false },
+        onDismissRequest = { viewModel.isShowDialog = false },
         title = { Text(text = "タスク新規作成") },
         text = {
             Column {
@@ -39,7 +35,7 @@ fun EditDialog(
                 Spacer(modifier = Modifier.weight(1f))
                 Button(
                     modifier = Modifier.width(120.dp),
-                    onClick = { isShowDialog.value = false },
+                    onClick = { viewModel.isShowDialog = false },
                 ) {
                     Text(text = "キャンセル")
                 }
@@ -47,7 +43,7 @@ fun EditDialog(
                 Button(
                     modifier = Modifier.width(120.dp),
                     onClick = {
-                        isShowDialog.value = false
+                        viewModel.isShowDialog = false
                         viewModel.createTask()
                     },
                 ) {
