@@ -8,6 +8,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.jettodoapp.components.EditDialog
@@ -43,6 +45,6 @@ fun MainContent(viewModel: MainViewModel = hiltViewModel()) {
             Icon(imageVector = Icons.Default.Add, contentDescription = "新規作成")
         }
     }) {
-
+        val tasks by viewModel.tasks.collectAsState(initial = emptyList())
     }
 }
