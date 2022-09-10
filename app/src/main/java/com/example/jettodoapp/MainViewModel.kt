@@ -27,4 +27,10 @@ class MainViewModel @Inject constructor(private val taskDao: TaskDao) : ViewMode
             Log.d(MainViewModel::class.simpleName, "success create task")
         }
     }
+
+    fun deleteTask(task: Task) {
+        viewModelScope.launch {
+            taskDao.deleteTask(task)
+        }
+    }
 }
