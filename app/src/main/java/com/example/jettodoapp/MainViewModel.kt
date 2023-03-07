@@ -35,6 +35,7 @@ class MainViewModel @Inject constructor(private val taskDao: TaskDao) : ViewMode
             val newTask = Task(title = title, description = description)
             taskDao.insertTask(newTask)
             Log.d(MainViewModel::class.simpleName, "success create task")
+            resetProperties()
         }
     }
 
@@ -50,6 +51,7 @@ class MainViewModel @Inject constructor(private val taskDao: TaskDao) : ViewMode
                 task.title = title
                 task.description = description
                 taskDao.updateTask(task)
+                resetProperties()
             }
         }
     }
